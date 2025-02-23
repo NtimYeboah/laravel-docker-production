@@ -33,9 +33,8 @@ jobs:
           WEB: laravel-docker-production-app
           QUEUE_WORKER: laravel-docker-production-queue-worker
         run: |
-          docker compose up --build --detach
-          docker images
-          docker compose down
+          docker compose build
+          docker image ls
           docker tag $WEB:latest $REGISTRY/$REPOSITORY:$WEB-$IMAGE_TAG
           docker tag $QUEUE_WORKER:latest $REGISTRY/$REPOSITORY:$QUEUE_WORKER-$IMAGE_TAG
           docker push $REGISTRY/$REPOSITORY:$WEB-$IMAGE_TAG
